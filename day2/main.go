@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math"
 	"os"
+	"slices"
 	"strconv"
 	"strings"
 )
@@ -52,17 +53,11 @@ func part1(reports [][]int) int {
 	return safe_reports
 }
 
-// Taken from https://stackoverflow.com/a/57213476
-func RemoveIndex(s []int, index int) []int {
-	ret := make([]int, 0)
-	ret = append(ret, s[:index]...)
-	return append(ret, s[index+1:]...)
-}
-
 func p2_problem_dampener(report []int) bool {
 	// Go through every value of the report removing it and checking if it is now safe as a result
 	for index := range len(report) {
-		new_report := RemoveIndex(report, index)
+		// new_report := RemoveIndex(report, index)
+		new_report := slices.Concat(report[:index], report[index+1:])
 		// Check this 'new report'
 		if p1_check_report(new_report) {
 			// This report is now safe
