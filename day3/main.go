@@ -88,10 +88,13 @@ func main() {
 		sb.WriteString(scanner.Text())
 	}
 
+	// Define the known correct outputs
 	var known_outputs []int = []int{178886550, 87163705}
+	// Run part1 and part2
 	var part1_output int = part1(sb.String())
 	var part2_output int = part2(sb.String())
 
+	// Print the results and check if they are correct
 	fmt.Printf("Part 1 Output: %d - ", part1_output)
 	if part1_output == known_outputs[0] {
 		fmt.Println("Correct")
