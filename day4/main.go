@@ -13,9 +13,7 @@ func xmas_hunt(lines [][]string, index1 int, index2 int) int {
 	if len(lines[index1])-1 >= index2+3 {
 		// Build the slice for going right
 		var right string
-		right += lines[index1][index2+1]
-		right += lines[index1][index2+2]
-		right += lines[index1][index2+3]
+		right += lines[index1][index2+1] + lines[index1][index2+2] + lines[index1][index2+3]
 		if right == "MAS" {
 			hits++
 		}
@@ -24,9 +22,7 @@ func xmas_hunt(lines [][]string, index1 int, index2 int) int {
 	if index2-3 >= 0 {
 		// Build the slice for going left
 		var left string
-		left += lines[index1][index2-1]
-		left += lines[index1][index2-2]
-		left += lines[index1][index2-3]
+		left += lines[index1][index2-1] + lines[index1][index2-2] + lines[index1][index2-3]
 		if left == "MAS" {
 			hits++
 		}
@@ -35,9 +31,7 @@ func xmas_hunt(lines [][]string, index1 int, index2 int) int {
 	if len(lines)-1 >= index1+3 {
 		// Build the slice for going down
 		var down string
-		down += lines[index1+1][index2]
-		down += lines[index1+2][index2]
-		down += lines[index1+3][index2]
+		down += lines[index1+1][index2] + lines[index1+2][index2] + lines[index1+3][index2]
 		if down == "MAS" {
 			hits++
 		}
@@ -46,9 +40,7 @@ func xmas_hunt(lines [][]string, index1 int, index2 int) int {
 	if index1-3 >= 0 {
 		// Build the slice for going up
 		var up string
-		up += lines[index1-1][index2]
-		up += lines[index1-2][index2]
-		up += lines[index1-3][index2]
+		up = lines[index1-1][index2] + lines[index1-2][index2] + lines[index1-3][index2]
 		if up == "MAS" {
 			hits++
 		}
@@ -59,9 +51,7 @@ func xmas_hunt(lines [][]string, index1 int, index2 int) int {
 	if index1-3 >= 0 && index2-3 >= 0 {
 		// Build the slice for going up and left
 		var up_left string
-		up_left += lines[index1-1][index2-1]
-		up_left += lines[index1-2][index2-2]
-		up_left += lines[index1-3][index2-3]
+		up_left += lines[index1-1][index2-1] + lines[index1-2][index2-2] + lines[index1-3][index2-3]
 		if up_left == "MAS" {
 			hits++
 		}
@@ -70,9 +60,7 @@ func xmas_hunt(lines [][]string, index1 int, index2 int) int {
 	if len(lines)-1 >= index1+3 && index2-3 >= 0 {
 		// Build the slice for going down and left
 		var down_left string
-		down_left += lines[index1+1][index2-1]
-		down_left += lines[index1+2][index2-2]
-		down_left += lines[index1+3][index2-3]
+		down_left += lines[index1+1][index2-1] + lines[index1+2][index2-2] + lines[index1+3][index2-3]
 		if down_left == "MAS" {
 			hits++
 		}
@@ -81,9 +69,7 @@ func xmas_hunt(lines [][]string, index1 int, index2 int) int {
 	if index1-3 >= 0 && len(lines[index1])-1 >= index2+3 {
 		// Build the slice for going up and right
 		var up_right string
-		up_right += lines[index1-1][index2+1]
-		up_right += lines[index1-2][index2+2]
-		up_right += lines[index1-3][index2+3]
+		up_right += lines[index1-1][index2+1] + lines[index1-2][index2+2] + lines[index1-3][index2+3]
 		if up_right == "MAS" {
 			hits++
 		}
@@ -92,9 +78,7 @@ func xmas_hunt(lines [][]string, index1 int, index2 int) int {
 	if len(lines)-1 >= index1+3 && len(lines[index1])-1 >= index2+3 {
 		// Build the slice for going down and right
 		var down_right string
-		down_right += lines[index1+1][index2+1]
-		down_right += lines[index1+2][index2+2]
-		down_right += lines[index1+3][index2+3]
+		down_right += lines[index1+1][index2+1] + lines[index1+2][index2+2] + lines[index1+3][index2+3]
 		if down_right == "MAS" {
 			hits++
 		}
