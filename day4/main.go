@@ -12,44 +12,44 @@ func xmas_hunt(lines [][]string, index1 int, index2 int) int {
 	// Check if it's possible to go far enough right
 	if len(lines[index1])-1 >= index2+3 {
 		// Build the slice for going right
-		var right []string
-		right = append(right, lines[index1][index2+1])
-		right = append(right, lines[index1][index2+2])
-		right = append(right, lines[index1][index2+3])
-		if strings.Join(right, "") == "MAS" {
+		var right string
+		right += lines[index1][index2+1]
+		right += lines[index1][index2+2]
+		right += lines[index1][index2+3]
+		if right == "MAS" {
 			hits++
 		}
 	}
 	// Check if it's possible to go far enough left
 	if index2-3 >= 0 {
 		// Build the slice for going left
-		var left []string
-		left = append(left, lines[index1][index2-1])
-		left = append(left, lines[index1][index2-2])
-		left = append(left, lines[index1][index2-3])
-		if strings.Join(left, "") == "MAS" {
+		var left string
+		left += lines[index1][index2-1]
+		left += lines[index1][index2-2]
+		left += lines[index1][index2-3]
+		if left == "MAS" {
 			hits++
 		}
 	}
 	// Check if it's possible to go far enough down
 	if len(lines)-1 >= index1+3 {
 		// Build the slice for going down
-		var down []string
-		down = append(down, lines[index1+1][index2])
-		down = append(down, lines[index1+2][index2])
-		down = append(down, lines[index1+3][index2])
-		if strings.Join(down, "") == "MAS" {
+		var down string
+		down += lines[index1+1][index2]
+		down += lines[index1+2][index2]
+		down += lines[index1+3][index2]
+		if down == "MAS" {
 			hits++
 		}
 	}
 	// Check if it's possible to go far enough up
 	if index1-3 >= 0 {
 		// Build the slice for going up
-		var up []string
-		up = append(up, lines[index1-1][index2])
-		up = append(up, lines[index1-2][index2])
-		up = append(up, lines[index1-3][index2])
-		if strings.Join(up, "") == "MAS" {
+		var up string
+		up += lines[index1-1][index2]
+		up += lines[index1-2][index2]
+		up += lines[index1-3][index2]
+		if up == "MAS" {
 			hits++
 		}
 	}
@@ -58,44 +58,44 @@ func xmas_hunt(lines [][]string, index1 int, index2 int) int {
 	// Check if it's possible to go far enough up and left
 	if index1-3 >= 0 && index2-3 >= 0 {
 		// Build the slice for going up and left
-		var up_left []string
-		up_left = append(up_left, lines[index1-1][index2-1])
-		up_left = append(up_left, lines[index1-2][index2-2])
-		up_left = append(up_left, lines[index1-3][index2-3])
-		if strings.Join(up_left, "") == "MAS" {
+		var up_left string
+		up_left += lines[index1-1][index2-1]
+		up_left += lines[index1-2][index2-2]
+		up_left += lines[index1-3][index2-3]
+		if up_left == "MAS" {
 			hits++
 		}
 	}
 	// Check if it's possible to go far enough down and left
 	if len(lines)-1 >= index1+3 && index2-3 >= 0 {
 		// Build the slice for going down and left
-		var down_left []string
-		down_left = append(down_left, lines[index1+1][index2-1])
-		down_left = append(down_left, lines[index1+2][index2-2])
-		down_left = append(down_left, lines[index1+3][index2-3])
-		if strings.Join(down_left, "") == "MAS" {
+		var down_left string
+		down_left += lines[index1+1][index2-1]
+		down_left += lines[index1+2][index2-2]
+		down_left += lines[index1+3][index2-3]
+		if down_left == "MAS" {
 			hits++
 		}
 	}
 	// Check if it's possible to go far enough up and right
 	if index1-3 >= 0 && len(lines[index1])-1 >= index2+3 {
 		// Build the slice for going up and right
-		var up_right []string
-		up_right = append(up_right, lines[index1-1][index2+1])
-		up_right = append(up_right, lines[index1-2][index2+2])
-		up_right = append(up_right, lines[index1-3][index2+3])
-		if strings.Join(up_right, "") == "MAS" {
+		var up_right string
+		up_right += lines[index1-1][index2+1]
+		up_right += lines[index1-2][index2+2]
+		up_right += lines[index1-3][index2+3]
+		if up_right == "MAS" {
 			hits++
 		}
 	}
 	// Check if it's possible to go far enough down and right
 	if len(lines)-1 >= index1+3 && len(lines[index1])-1 >= index2+3 {
 		// Build the slice for going down and right
-		var down_right []string
-		down_right = append(down_right, lines[index1+1][index2+1])
-		down_right = append(down_right, lines[index1+2][index2+2])
-		down_right = append(down_right, lines[index1+3][index2+3])
-		if strings.Join(down_right, "") == "MAS" {
+		var down_right string
+		down_right += lines[index1+1][index2+1]
+		down_right += lines[index1+2][index2+2]
+		down_right += lines[index1+3][index2+3]
+		if down_right == "MAS" {
 			hits++
 		}
 	}
@@ -137,22 +137,12 @@ func x_mas_hunt(lines [][]string, index1 int, index2 int) int {
 	}
 
 	// If we've reached here we can go far enough in every direction to check if this is an "X-MAS"
-	up_left := lines[index1-1][index2-1]
-	up_right := lines[index1-1][index2+1]
-	down_left := lines[index1+1][index2-1]
-	down_right := lines[index1+1][index2+1]
-	// Combined value for both diagonals
-	var left_diagonal strings.Builder
-	left_diagonal.WriteString(up_left)
-	left_diagonal.WriteString("A")
-	left_diagonal.WriteString(down_right)
+	// Up left + down right
+	left_diagonal := lines[index1-1][index2-1] + lines[index1+1][index2+1]
+	// Up right + down left
+	right_diagonal := lines[index1-1][index2+1] + lines[index1+1][index2-1]
 
-	var right_diagonal strings.Builder
-	right_diagonal.WriteString(up_right)
-	right_diagonal.WriteString("A")
-	right_diagonal.WriteString(down_left)
-
-	if (left_diagonal.String() == "MAS" || left_diagonal.String() == "SAM") && (right_diagonal.String() == "MAS" || right_diagonal.String() == "SAM") {
+	if (left_diagonal == "MS" || left_diagonal == "SM") && (right_diagonal == "MS" || right_diagonal == "SM") {
 		return 1
 	}
 	return 0
