@@ -15,8 +15,9 @@ type number_rules struct {
 	after  []int
 }
 
-func part1(rule_map map[int]number_rules, updates [][]int) [][]int {
+func part1(rule_map map[int]number_rules, updates [][]int) ([][]int, [][]int) {
 	var valid_updates [][]int
+	var invalid_updates [][]int
 	for _, update := range updates {
 		// Check if the update is valid
 		var valid bool = true
@@ -49,9 +50,12 @@ func part1(rule_map map[int]number_rules, updates [][]int) [][]int {
 		if valid {
 			// fmt.Println("Valid update:", update)
 			valid_updates = append(valid_updates, update)
+		} else {
+			// fmt.Println("Invalid update:", update)
+			invalid_updates = append(invalid_updates, update)
 		}
 	}
-	return valid_updates
+	return valid_updates, invalid_updates
 }
 
 func process_rules(rules [][]int) map[int]number_rules {
@@ -85,6 +89,13 @@ func process_rules(rules [][]int) map[int]number_rules {
 	}
 	// fmt.Println(rule_map)
 	return rule_map
+}
+
+func part2(rule_map map[int]number_rules, updates [][]int) int {
+	// We can build a 'fixed' update by making a slice
+	// And then based on the rules we can do some logic with concat to put in right order
+	// Hopefully....
+	return 0
 }
 
 func main() {
@@ -130,7 +141,7 @@ func main() {
 	// Process the rules
 	rule_map := process_rules(rules)
 
-	p1_valid_updates := part1(rule_map, updates)
+	p1_valid_updates, invalid_updates := part1(rule_map, updates)
 	var middle_totals int
 	for _, update := range p1_valid_updates {
 		// Get middle element
@@ -139,4 +150,6 @@ func main() {
 	}
 	fmt.Println("Part 1 Output:", middle_totals)
 
+	// Part 2
+	fmt.Println("Part 2 Output:", part2(rule_map, invalid_updates))
 }
