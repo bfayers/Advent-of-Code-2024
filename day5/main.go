@@ -87,15 +87,48 @@ func process_rules(rules [][]int) map[int]number_rules {
 			rule_map[rule[1]] = new_entry
 		}
 	}
-	// fmt.Println(rule_map)
 	return rule_map
 }
 
 func part2(rule_map map[int]number_rules, updates [][]int) int {
+	var middle_totals int
 	// We can build a 'fixed' update by making a slice
 	// And then based on the rules we can do some logic with concat to put in right order
 	// Hopefully....
-	return 0
+	for _, update := range updates {
+		// Fix this update
+		var fixed_update []int
+	outer:
+		for _, ele := range update {
+			if len(fixed_update) == 0 {
+				fixed_update = append(fixed_update, ele)
+				continue
+			}
+			for _, f_ele := range fixed_update {
+				if slices.Contains(rule_map[f_ele].before, ele) {
+					// This should be before the current item
+					fixed_update = append([]int{ele}, fixed_update...)
+					continue outer
+				} else if slices.Contains(rule_map[f_ele].after, ele) {
+					// If this should be after the current item, it could need to be after a future one too
+					// Loop backwards over fixed_update to find the latest AFTER point
+					for i := len(fixed_update) - 1; i >= 0; i-- {
+						if slices.Contains(rule_map[fixed_update[i]].after, ele) {
+							// This should be after THIS item
+							fixed_update = append(fixed_update[:i+1], append([]int{ele}, fixed_update[i+1:]...)...)
+							continue outer
+						}
+					}
+					continue outer
+				}
+			}
+		}
+		// Update is now fixed, find the middle page number and add up again
+		// Get middle element
+		mid := int(math.Ceil(float64(len(fixed_update))/2)) - 1
+		middle_totals += fixed_update[mid]
+	}
+	return middle_totals
 }
 
 func main() {
@@ -134,9 +167,6 @@ func main() {
 			updates = append(updates, update)
 		}
 	}
-
-	// fmt.Println(rules)
-	// fmt.Println(updates)
 
 	// Process the rules
 	rule_map := process_rules(rules)
