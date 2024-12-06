@@ -134,7 +134,7 @@ func part2(lines [][]string, coordinate_movements map[coordinate]movement) int {
 	fmt.Println("Guard at: ", guard_y, guard_x)
 	// Move the guard
 	// Inject a new obstacle at one of the visisted positions
-	for key, _ := range coordinate_movements {
+	for key := range coordinate_movements {
 		if key.x == guard_x && key.y == guard_y {
 			// Skip this one because it will never start
 			continue
