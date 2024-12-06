@@ -125,10 +125,19 @@ func part2(rule_map map[int]number_rules, updates [][]int) int {
 		}
 		// Update is now fixed, find the middle page number and add up again
 		// Get middle element
-		mid := int(math.Ceil(float64(len(fixed_update))/2)) - 1
-		middle_totals += fixed_update[mid]
+		middle_totals += sum_middle_elements([][]int{fixed_update})
 	}
 	return middle_totals
+}
+
+func sum_middle_elements(updates [][]int) int {
+	var total int
+	for _, update := range updates {
+		// Get middle element
+		mid := int(math.Ceil(float64(len(update))/2)) - 1
+		total += update[mid]
+	}
+	return total
 }
 
 func main() {
@@ -172,13 +181,7 @@ func main() {
 	rule_map := process_rules(rules)
 
 	p1_valid_updates, invalid_updates := part1(rule_map, updates)
-	var middle_totals int
-	for _, update := range p1_valid_updates {
-		// Get middle element
-		mid := int(math.Ceil(float64(len(update))/2)) - 1
-		middle_totals += update[mid]
-	}
-	fmt.Println("Part 1 Output:", middle_totals)
+	fmt.Println("Part 1 Output:", sum_middle_elements(p1_valid_updates))
 
 	// Part 2
 	fmt.Println("Part 2 Output:", part2(rule_map, invalid_updates))
