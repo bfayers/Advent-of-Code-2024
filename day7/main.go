@@ -48,6 +48,9 @@ func part1(calibrations map[int][][]int, operators []string) int {
 						perm_total, _ = strconv.Atoi(strconv.Itoa(perm_total) + strconv.Itoa(value[i]))
 					}
 					perm_slot++
+					if perm_total > key {
+						continue every_permutation_loop
+					}
 				}
 				if perm_total == key {
 					total_valid_results += key
