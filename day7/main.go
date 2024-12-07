@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/mowshon/iterium"
+	"github.com/life4/genesis/slices"
 )
 
 func create_int_slice(str_slice []string) []int {
@@ -27,10 +27,9 @@ func part1(calibrations map[int][][]int, operators []string) int {
 		for _, value := range master_value {
 			// Get the total possible iterations of the two operators in the equation
 			total_possible_positions := (len(value) - 1)
-			permutations := iterium.Product(operators, total_possible_positions)
-			permutations_slice, _ := permutations.Slice()
+			permutations := slices.Product(operators, total_possible_positions)
 		every_permutation_loop:
-			for _, permutation := range permutations_slice {
+			for permutation := range permutations {
 				var perm_slot int
 				var perm_total int
 				perm_total = value[0]
