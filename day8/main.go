@@ -32,9 +32,9 @@ func part1(satellites map[string][]coordinate, map_width int, map_height int) in
 
 			// Place the antinodes
 			// Check if the antinodes are within the map bounds, and only add if they are
-			antinode1 := coordinate{pos1.x + distance_x, pos1.y + distance_y}
-			if antinode1.x >= 0 && antinode1.x <= map_width && antinode1.y >= 0 && antinode1.y <= map_height {
-				all_antinodes = append(all_antinodes, antinode1)
+			antinode := coordinate{pos1.x + distance_x, pos1.y + distance_y}
+			if antinode.x >= 0 && antinode.x <= map_width && antinode.y >= 0 && antinode.y <= map_height {
+				all_antinodes = append(all_antinodes, antinode)
 			}
 		}
 	}
@@ -57,15 +57,15 @@ func part2(satellites map[string][]coordinate, map_width int, map_height int) in
 
 			// Place the antinodes
 			// Check if the antinodes are within the map bounds, and only add if they are
-			antinode1 := coordinate{pos1.x, pos1.y}
+			antinode := coordinate{pos1.x, pos1.y}
 			for {
-				if antinode1.x >= 0 && antinode1.x <= map_width && antinode1.y >= 0 && antinode1.y <= map_height {
-					all_antinodes = append(all_antinodes, antinode1)
+				if antinode.x >= 0 && antinode.x <= map_width && antinode.y >= 0 && antinode.y <= map_height {
+					all_antinodes = append(all_antinodes, antinode)
 				} else {
 					break
 				}
-				antinode1.x += distance_x
-				antinode1.y += distance_y
+				antinode.x += distance_x
+				antinode.y += distance_y
 			}
 		}
 	}
