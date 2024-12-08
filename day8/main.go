@@ -66,7 +66,6 @@ func main() {
 	var map_height int
 	// Create a scanner
 	scanner := bufio.NewScanner(dat)
-	var line_number int
 	// Loop through input
 	for scanner.Scan() {
 		// Get line
@@ -78,13 +77,14 @@ func main() {
 			// Check if the letter is an antenna (if it's not a dot it's an antenna)
 			if letter != "." {
 				// Add the antenna to the satellite map
-				satellites[letter] = append(satellites[letter], coordinate{i, line_number})
+				satellites[letter] = append(satellites[letter], coordinate{i, map_height})
 			}
 		}
-		line_number++
+		map_height++
 	}
 
-	map_height = line_number - 1
+	// Account for zero indexing (?)
+	map_height--
 
 	fmt.Println("Part 1 Output: ", process(satellites, map_width, map_height, false))
 	fmt.Println("Part 2 Output: ", process(satellites, map_width, map_height, true))
