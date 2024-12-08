@@ -76,14 +76,12 @@ func main() {
 		line := scanner.Text()
 		// Split line into letters
 		letters := strings.Split(line, "")
+		map_width = len(letters) - 1
 		for i, letter := range letters {
 			// Check if the letter is an antenna
 			if antenna_re.MatchString(letter) {
 				// Add the antenna to the satellite map
 				satellites[letter] = append(satellites[letter], coordinate{i, line_number})
-			}
-			if i > map_width {
-				map_width = i
 			}
 		}
 		line_number++
