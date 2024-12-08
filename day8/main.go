@@ -67,10 +67,10 @@ func main() {
 	// Define values to keep track of the map size
 	var map_width int
 	var map_height int
-	// Loop through input
 	// Create a scanner
 	scanner := bufio.NewScanner(dat)
 	var line_number int
+	// Loop through input
 	for scanner.Scan() {
 		// Get line
 		line := scanner.Text()
