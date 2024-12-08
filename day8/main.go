@@ -27,20 +27,14 @@ func part1(satellites map[string][]coordinate, map_width int, map_height int) in
 		for combo := range combinations {
 			pos1, pos2 := combo[0], combo[1]
 			// Get distance between the two
-			distance1_x := pos1.x - pos2.x
-			distance1_y := pos1.y - pos2.y
+			distance_x := pos1.x - pos2.x
+			distance_y := pos1.y - pos2.y
 
-			distance2_x := pos2.x - pos1.x
-			distance2_y := pos2.y - pos1.y
 			// Place the antinodes
 			// Check if the antinodes are within the map bounds, and only add if they are
-			antinode1 := coordinate{pos1.x + distance1_x, pos1.y + distance1_y}
+			antinode1 := coordinate{pos1.x + distance_x, pos1.y + distance_y}
 			if antinode1.x >= 0 && antinode1.x <= map_width && antinode1.y >= 0 && antinode1.y <= map_height {
 				all_antinodes = append(all_antinodes, antinode1)
-			}
-			antinode2 := coordinate{pos2.x + distance2_x, pos2.y + distance2_y}
-			if antinode2.x >= 0 && antinode2.x <= map_width && antinode2.y >= 0 && antinode2.y <= map_height {
-				all_antinodes = append(all_antinodes, antinode2)
 			}
 		}
 	}
@@ -58,11 +52,9 @@ func part2(satellites map[string][]coordinate, map_width int, map_height int) in
 		for combo := range combinations {
 			pos1, pos2 := combo[0], combo[1]
 			// Get distance between the two
-			distance1_x := pos1.x - pos2.x
-			distance1_y := pos1.y - pos2.y
+			distance_x := pos1.x - pos2.x
+			distance_y := pos1.y - pos2.y
 
-			distance2_x := pos2.x - pos1.x
-			distance2_y := pos2.y - pos1.y
 			// Place the antinodes
 			// Check if the antinodes are within the map bounds, and only add if they are
 			antinode1 := coordinate{pos1.x, pos1.y}
@@ -72,18 +64,8 @@ func part2(satellites map[string][]coordinate, map_width int, map_height int) in
 				} else {
 					break
 				}
-				antinode1.x += distance1_x
-				antinode1.y += distance1_y
-			}
-			antinode2 := coordinate{pos2.x, pos2.y}
-			for {
-				if antinode2.x >= 0 && antinode2.x <= map_width && antinode2.y >= 0 && antinode2.y <= map_height {
-					all_antinodes = append(all_antinodes, antinode2)
-				} else {
-					break
-				}
-				antinode2.x += distance2_x
-				antinode2.y += distance2_y
+				antinode1.x += distance_x
+				antinode1.y += distance_y
 			}
 		}
 	}
