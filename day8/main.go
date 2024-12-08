@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"regexp"
 	"strings"
 
 	"github.com/life4/genesis/slices"
@@ -14,8 +13,6 @@ type coordinate struct {
 	x int
 	y int
 }
-
-var antenna_re = regexp.MustCompile(`([A-Za-z0-9])`)
 
 func process(satellites map[string][]coordinate, map_width int, map_height int, part2 bool) int {
 	var all_antinodes []coordinate
@@ -78,8 +75,8 @@ func main() {
 		letters := strings.Split(line, "")
 		map_width = len(letters) - 1
 		for i, letter := range letters {
-			// Check if the letter is an antenna
-			if antenna_re.MatchString(letter) {
+			// Check if the letter is an antenna (if it's not a dot it's an antenna)
+			if letter != "." {
 				// Add the antenna to the satellite map
 				satellites[letter] = append(satellites[letter], coordinate{i, line_number})
 			}
