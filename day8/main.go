@@ -15,7 +15,7 @@ type coordinate struct {
 	y int
 }
 
-var antenna_re = regexp.MustCompile(`([A-Z]|[a-z]|[0-9])`)
+var antenna_re = regexp.MustCompile(`([A-Za-z0-9])`)
 
 func part1(satellites map[string][]coordinate, map_width int, map_height int) int {
 	var all_antinodes []coordinate
@@ -108,9 +108,6 @@ func main() {
 	}
 
 	map_height = line_number - 1
-
-	fmt.Println("Map Width: ", map_width)
-	fmt.Println("Map Height: ", map_height)
 
 	fmt.Println("Part 1 Output: ", part1(satellites, map_width, map_height))
 	fmt.Println("Part 2 Output: ", part2(satellites, map_width, map_height))
